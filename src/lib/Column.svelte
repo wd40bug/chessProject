@@ -1,11 +1,12 @@
 <script>
 	import Tile from '$lib/Tile.svelte';
 	export let id;
+	export let size;
 	let offset = id%2;
 </script>
 
 <div class='column'>
-	{#each Array(10) as _, i}
+	{#each Array(size) as _, i}
 		{#if (i+offset)%2===0}
 			<Tile dark={true}/>
 		{:else}
