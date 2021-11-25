@@ -10,7 +10,7 @@
 				background-color: white;
 		}
 		.black{
-				background-color: black;
+				background-color: brown;
 		}
 	div{
 			width: 50px;

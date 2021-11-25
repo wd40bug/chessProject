@@ -1,3 +1,7 @@
+<script>
+	import Button from '$lib/Button.svelte';
+</script>
+
 <nav>
 	<a href = '/'>Home</a>
 	<a href = '/about'>About</a>
@@ -10,26 +14,45 @@
 		<button class="dropbtn">Games</button>
 		<div class="dropdown-content">
 			<a href="/chess">Chess</a>
+			<a href='/api_testing'>API Testing</a>
 		</div>
 	</div>
-
+	<Button>Night Mode</Button>
 </nav>
 
 <slot></slot>
 
 <style>
+    :global(body) {
+        background-color: #f2eee2;
+        color: #0084f6;
+        transition: background-color 0.3s
+    }
+    :global(body.dark-mode) {
+        background-color: #1d3040;
+        color: #bfc2c7;
+    }
     .dropbtn {
-				background-color: white;
+				background-color: #f2eee2;
+				border-radius: 4px;
         color: black;
         padding: 2px;
         font-size: 14px;
         border: none;
+    }
+    :global(body.dark-mode) .dropbtn {
+        background-color: #0084f6;
+        color: white;
     }
 
     .dropdown {
         position: relative;
         display: inline-block;
     }
+		:global(body.dark-mode) .dropdown-content {
+				background-color: #0084f6;
+				color: white;
+		}
 
     .dropdown-content {
         display: none;
@@ -48,8 +71,11 @@
     }
 
     .dropdown-content a:hover {background-color: #ddd;}
+		:global(body.dark-mode) .dropdown-content a:hover {background-color: #1d3040;
+        color: white;}
 
-    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropdown-content {display: block; border-radius: 4px;}
+
 
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>

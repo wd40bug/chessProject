@@ -16,7 +16,7 @@
 		</div>
 		<div class='row'>
 			{#each Array(size) as _, i}
-				<Column id={i} size={size}/>
+				<Column id={i} size={size} />
 			{/each}
 		</div>
 	</div>
@@ -24,10 +24,10 @@
 		<div class='coordinate'></div>
 
 		{#each Array(size) as _, i}
-				<div class='coordinate'>
-					<br>{i}
-				</div>
-			{/each}
+			<div class='coordinate'>
+				<br>{i}
+			</div>
+		{/each}
 
 	</div>
 </div>
@@ -51,8 +51,8 @@
         height: 50px;
         width: 50px;
         line-height: 20px;
-				text-align: center;
-				vertical-align: center;
+        text-align: center;
+        vertical-align: center;
     }
 
     .coordinateHolderHor {
