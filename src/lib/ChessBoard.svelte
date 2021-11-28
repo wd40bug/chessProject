@@ -1,6 +1,5 @@
 <script>
 	import Column from '$lib/Column.svelte';
-
 	export const size = 8;
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	import Tile from '$lib/Tile.svelte';
 	export let id;
 	export let size;

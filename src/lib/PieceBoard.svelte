@@ -33,13 +33,16 @@
 	{#each Array(8) as _, i}
 		<div id='imageHolder'>
 			{#each Array(8) as _, j}
-				<img src={getSRC(7-j,7-i,pieces)} alt={getAlt(7-j,7-i,pieces)}>
+				<img src={getSRC(j,7-i,pieces)} alt={getAlt(j,7-i,pieces)}>
 			{/each}
 		</div>
 	{/each}
 </div>
 
 <style>
+		:global(.dark) img{
+				filter: brightness(50%);
+		}
     img {
         width: 50px;
         height: 50px;
