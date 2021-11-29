@@ -1,5 +1,6 @@
 <script lang='ts'>
 	export let dark:boolean;
+	export let theme:boolean;
 	let color = dark? 'black' : 'white';
 </script>
 <div class={color}>
@@ -10,7 +11,13 @@
 				background-color: white;
 		}
 		.black{
-				background-color: black;
+				background-color: #a12435;
+		}
+		:global(.dark) .white{
+				background-color: #595656;
+		}
+		:global(.dark) .black{
+				background-color: #570f0f;
 		}
 	div{
 			width: 50px;

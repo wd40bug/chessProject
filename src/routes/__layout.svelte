@@ -1,3 +1,28 @@
+<script lang="ts">
+	import Button from '$lib/Button.svelte';
+	import DarkMode from "svelte-dark-mode";
+	import { onMount } from 'svelte';
+	import { cookieStorage, persist } from '@macfja/svelte-persistent-store';
+	import { writable } from 'svelte/store';
+	// import { id } from '../store';
+
+	export const id = persist(writable("hello"),cookieStorage(),'id');
+	function makeid(length):string {
+		let result = '';
+		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		const charactersLength = characters.length;
+		for (let i = 0; i < length; i++ ) {
+			result += characters.charAt(Math.floor(Math.random() *
+				charactersLength));
+		}
+		return result;
+	}
+	let theme;
+
+	$: switchTheme = theme === "dark" ? "light" : "dark";
+	onMount(()=>{	$: document.body.className = theme;})
+</script>
+<DarkMode bind:theme/>
 <nav>
 	<a href = '/'>Home</a>
 	<a href = '/about'>About</a>
@@ -10,26 +35,71 @@
 		<button class="dropbtn">Games</button>
 		<div class="dropdown-content">
 			<a href="/chess">Chess</a>
+			<a href='/api_testing'>API Testing</a>
 		</div>
 	</div>
-
+<!--	<Button>Night Mode</Button>-->
+	<button on:click={() => {theme = switchTheme; location.reload(); } } id='modeSwitcher' class='dropbtn'>
+		Mode: {theme}
+	</button>
+	<p>ID: {id}</p>
 </nav>
 
 <slot></slot>
 
 <style>
+    /*:global(body) {*/
+    /*    background-color: #f2eee2;*/
+    /*    color: #0084f6;*/
+    /*    transition: background-color 0.3s*/
+    /*}*/
+    :global(.dark) {
+        background: #00020c;
+        color: #3a3a3d;
+    }
+		:global(.dark) #modeSwitcher{
+        background: #04132b;
+				border-color: #041b40;
+        color: #f1f8ff;
+				border-radius: 5px;
+				border-width: 2px;
+				border-style: solid;
+				font-size: 14px;
+				padding: 2px;
+		}
+		:global(.dark) .dropbtn{
+        background: #04132b;
+        border-color: #041b40;
+        color: #f1f8ff;
+        border-width: 2px;
+        border-radius: 5px;
+				border-style: solid;
+		}
+    /*:global(body.dark-mode) {*/
+    /*    background-color: #1d3040;*/
+    /*    color: #bfc2c7;*/
+    /*}*/
     .dropbtn {
-				background-color: white;
+				background-color: #f2eee2;
+				border-radius: 5px;
         color: black;
         padding: 2px;
         font-size: 14px;
         border: none;
     }
+    /*:global(body.dark-mode) .dropbtn {*/
+    /*    background-color: #0084f6;*/
+    /*    color: white;*/
+    /*}*/
 
     .dropdown {
         position: relative;
         display: inline-block;
     }
+		/*:global(body.dark-mode) .dropdown-content {*/
+		/*		background-color: #0084f6;*/
+		/*		color: white;*/
+		/*}*/
 
     .dropdown-content {
         display: none;
@@ -48,8 +118,11 @@
     }
 
     .dropdown-content a:hover {background-color: #ddd;}
+		/*:global(body.dark-mode) .dropdown-content a:hover {background-color: #1d3040;*/
+    /*    color: white;}*/
 
-    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropdown-content {display: block; border-radius: 4px;}
+
 
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>

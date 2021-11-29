@@ -1,5 +1,38 @@
-<script>
+<script lang='ts'>
 	import ChessBoard from '$lib/ChessBoard.svelte';
+	import type Piece from '$lib/types/piece';
+	import PieceBoard from '$lib/PieceBoard.svelte';
+
+	const getPiecesArray = (async () => {
+		const response = await fetch('http://localhost:8080/get_board');
+		return await response.json() as Piece[];
+	});
 </script>
 <h1>Chess</h1>
-<ChessBoard/>
+<div id='board'>
+	<ChessBoard />
+	<div id='pieces'>
+		{#await getPiecesArray()}
+			<p>fetching data</p>
+		{:then value}
+			<PieceBoard pieces={value} />
+		{:catch err}
+			<p>error fetching data {err}</p>
+		{/await}
+	</div>
+</div>
+
+<style>
+	#board{
+			position: relative;
+	}
+	#pieces{
+			top: 10px;
+			left: 54px;
+			position: absolute;
+	}
+	p{
+			color: #ff3e00;
+	}
+
+</style>

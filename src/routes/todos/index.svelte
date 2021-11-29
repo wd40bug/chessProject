@@ -91,7 +91,7 @@
 			</form>
 
 			<form
-				class="text"
+				class='coordinateHolderHor'
 				action="/todos/{todo.uid}.json?_method=patch"
 				method="post"
 				use:enhance={{
@@ -170,7 +170,7 @@
 		filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.1));
 	}
 
-	form.text {
+	form.coordinateHolderHor {
 		position: relative;
 		display: flex;
 		align-items: center;
