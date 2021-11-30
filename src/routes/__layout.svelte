@@ -1,22 +1,8 @@
 <script lang="ts">
-	import Button from '$lib/Button.svelte';
 	import DarkMode from "svelte-dark-mode";
 	import { onMount } from 'svelte';
-	import { cookieStorage, persist } from '@macfja/svelte-persistent-store';
-	import { writable } from 'svelte/store';
-	// import { id } from '../store';
+	import ID from '$lib/shared/store'
 
-	export const id = persist(writable("hello"),cookieStorage(),'id');
-	function makeid(length):string {
-		let result = '';
-		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-		const charactersLength = characters.length;
-		for (let i = 0; i < length; i++ ) {
-			result += characters.charAt(Math.floor(Math.random() *
-				charactersLength));
-		}
-		return result;
-	}
 	let theme;
 
 	$: switchTheme = theme === "dark" ? "light" : "dark";
@@ -36,13 +22,14 @@
 		<div class="dropdown-content">
 			<a href="/chess">Chess</a>
 			<a href='/api_testing'>API Testing</a>
+			<a href='/clear_localstorage'>Clear Local Storage</a>
 		</div>
 	</div>
 <!--	<Button>Night Mode</Button>-->
 	<button on:click={() => {theme = switchTheme; location.reload(); } } id='modeSwitcher' class='dropbtn'>
 		Mode: {theme}
 	</button>
-	<p>ID: {id}</p>
+	<p id = 'IDholder'>{$ID}</p>
 </nav>
 
 <slot></slot>
@@ -53,6 +40,9 @@
     /*    color: #0084f6;*/
     /*    transition: background-color 0.3s*/
     /*}*/
+		#IDholder{
+				color: #570f0f;
+		}
     :global(.dark) {
         background: #00020c;
         color: #3a3a3d;
@@ -109,7 +99,13 @@
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
-
+		:global(.dark) .dropdown-content a {
+			color: #98989d;
+			background-color: #041b40;
+		}
+		:global(.dark) .dropdown-content a:hover {
+				background-color: #0084f6;
+		}
     .dropdown-content a {
         color: black;
         padding: 12px 16px;
