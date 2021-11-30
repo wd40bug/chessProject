@@ -13,10 +13,6 @@
 	<a href = '/'>Home</a>
 	<a href = '/about'>About</a>
 	<a href = '/todos'>Todos</a>
-<!--	<select name='games' id='game'>-->
-<!--		<option value='games'>Games</option>-->
-<!--		<option value='chess'>Chess</option>-->
-<!--	</select>-->
 	<div class="dropdown">
 		<button class="dropbtn">Games</button>
 		<div class="dropdown-content">

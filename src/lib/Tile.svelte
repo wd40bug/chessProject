@@ -1,6 +1,5 @@
 <script lang='ts'>
 	export let dark:boolean;
-	export let theme:boolean;
 	let color = dark? 'black' : 'white';
 </script>
 <div class={color}>

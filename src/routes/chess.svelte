@@ -3,11 +3,15 @@
 	import type Piece from '$lib/types/piece';
 	import PieceBoard from '$lib/PieceBoard.svelte';
 	import ID from '$lib/shared/store';
-	import { to_number } from 'svelte/internal';
 
 	const getPiecesArray = (async () => {
 		const response = await fetch('http://localhost:8080/get_board?ID='+$ID);
 		return await response.json() as Piece[];
+	});
+	const movePiece = (async (piece:Piece) => {
+		const response = await fetch('http://localhost:8080/get_board',
+			{ method: 'POST',
+			body:JSON.stringify(piece)});
 	});
 </script>
 <h1>Chess</h1>

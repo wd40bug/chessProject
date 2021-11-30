@@ -31,7 +31,7 @@
 </script>
 <div id='imageHolderHolder'>
 	{#each Array(8) as _, i}
-		<div id='imageHolder'>
+		<div class='imageHolder'>
 			{#each Array(8) as _, j}
 				<img src={getSRC(j,7-i,pieces)} alt={getAlt(j,7-i,pieces)}>
 			{/each}
@@ -48,7 +48,7 @@
         height: 50px;
         color: red;
     }
-    #imageHolder {
+    .imageHolder {
         display: inline-flex;
         flex-direction: row;
     }
