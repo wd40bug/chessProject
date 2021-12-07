@@ -4,6 +4,13 @@
 	import { onMount } from 'svelte';
 
 	export let pieces: Piece[];
+
+	let pics: [string,string][8][8];
+
+	for(let i = 0; i<pics.length; i++){
+
+	}
+
 	const getPieces = (async () => {
 		const response = await fetch('http://localhost:8080/get_board?ID='+$ID);
 		pieces = await response.json() as Piece[];
